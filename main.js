@@ -1,6 +1,9 @@
 var inputDate = document.querySelector("#input-date");
 var btnCheck = document.querySelector("#btn-check");
 var outputArea = document.querySelector("#output-area");
+var nextPalindrome = document.querySelector("#nextPalindrome");
+var previousPlaindrome = document.querySelector("#previousPlaindrome");
+
 
 // a func to reverse any string it receives
 function reverseStr(str)
@@ -243,6 +246,8 @@ function clickHandler()
     if(bdayDateString == "")
     {
         outputArea.innerHTML=`Please Select a date.`;
+        nextPalindrome.innerText = "";
+        previousPlaindrome.innerText = "";
     }
     else
     {
@@ -259,12 +264,16 @@ function clickHandler()
         if(isPalindrome)
         {
             outputArea.innerText = `Yay!! Your Birthday is a Palindrome 🤟🤟`;
+            nextPalindrome.innerText = "";
+            previousPlaindrome.innerText = "";
         }
         else{
             var [nextCtr, nextDate] = getNextPalindromeDate(date);
             var [preCtr, previousDate] = getPreviousPalindromeDate(date);
 
-            outputArea.innerHTML = `<div> Your Birthday is not a Palindrome. <h3>The next palindrome date is on ${nextDate.day}-${nextDate.month}-${nextDate.year}, You were earlier by ${nextCtr} days.🤦‍♂️</h3>  <h3>The last palindrome date was on ${previousDate.day}-${previousDate.month}-${previousDate.year}, you were late by ${preCtr} days.🤷‍♂️</h3></div>`;
+                outputArea.innerText = `Your Birthday is not a Palindrome.`;
+                nextPalindrome.innerText = `The next palindrome date is on ${nextDate.day}-${nextDate.month}-${nextDate.year}, You were earlier by ${nextCtr} days.🤦‍♂️`;
+                previousPlaindrome.innerText = `The last palindrome date was on ${previousDate.day}-${previousDate.month}-${previousDate.year}, you were late by ${preCtr} days.🤷‍♂️`;
         }
 
     }
